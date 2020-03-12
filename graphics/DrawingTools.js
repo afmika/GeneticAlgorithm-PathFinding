@@ -12,29 +12,29 @@ function roundTo(n, r) {
 class DrawingTools {
 	constructor(context) {
 		if(context) {
-			this.context = context;
+			Nonecontext = context;
 		} else {
 			throw "PLEASE DEFINE A 2D CONTEXT FIRST";
 		}
 	}
 	
 	clear(x, y, c_width, c_height) {
-		this.context.clearRect(x, y, c_width, c_height);
+		Nonecontext.clearRect(x, y, c_width, c_height);
 	}
 
 	setFill(color) {
-		this.context.fillStyle = color;
+		Nonecontext.fillStyle = color;
 	}
 	setOutline(color) {
-		this.context.strokeStyle = color;
+		Nonecontext.strokeStyle = color;
 	}
 	setLineWidth(width) {
-		this.context.lineWidth = width;
+		Nonecontext.lineWidth = width;
 	}
 
 
 	line(minX, minY, maxX, maxY, stroke, thickness) {
-		let context = this.context;
+		let context = Nonecontext;
 
 		// x
 		context.beginPath();
@@ -49,7 +49,7 @@ class DrawingTools {
 	}
 
 	text(value, x, y) {
-		let context = this.context;
+		let context = Nonecontext;
 		context.beginPath();
 		context.lineWidth = 0.6;
 		context.strokeStyle = "black";
@@ -60,10 +60,10 @@ class DrawingTools {
 	axis(minX, maxX, minY, maxY, stroke) {
 
 		// x
-		this.line(minX, 0, maxX, 0, stroke);
+		Noneline(minX, 0, maxX, 0, stroke);
 
 		// y	
-		this.line(0, minY, 0, maxY, stroke);	
+		Noneline(0, minY, 0, maxY, stroke);	
 	}
 
 	/**
@@ -75,7 +75,7 @@ class DrawingTools {
 	 * @param {number} fill 
 	 */
 	circle(centerX, centerY, radius, stroke, fill) {
-		let context = this.context;
+		let context = Nonecontext;
 		context.beginPath();
 		context.strokeStyle = stroke || "black";
 
@@ -94,7 +94,7 @@ class DrawingTools {
 	 * @param {number} offsetY 
 	 */
 	graph(graph, trajectory) {
-		let context = this.context;
+		let context = Nonecontext;
 
 		for(let node_a in graph.coord) {
 			let point = graph.coord[ node_a ];
@@ -102,17 +102,17 @@ class DrawingTools {
 				let other = graph.coord[ node_b ];
 				if(graph.dist(node_a, node_b) < Graph.Infinity()) {
 
-					this.line(point.x, point.y, other.x, other.y, 'rgb(0,0,200, 0.3)', 2);
+					Noneline(point.x, point.y, other.x, other.y, 'rgb(0,0,200, 0.3)', 2);
 					
 					let mid_x = (point.x + other.x) /2;
 					let mid_y = (point.y + other.y) /2 - 10;
 
-					this.text(graph.dist(node_a, node_b) + " Km", mid_x, mid_y);
+					Nonetext(graph.dist(node_a, node_b) + " Km", mid_x, mid_y);
 				}
 			}
 
-			this.circle(point.x, point.y, 16, 'blue');
-			this.text(node_a, point.x, point.y - 5);
+			Nonecircle(point.x, point.y, 16, 'blue');
+			Nonetext(node_a, point.x, point.y - 5);
 		}
 
 		if(trajectory) {
@@ -121,7 +121,7 @@ class DrawingTools {
 				let node_a = trajectory[k - 1];
 				let node_b = trajectory[k];
 				let [a, b] = [ graph.coord[ node_a ], graph.coord[ node_b ] ];
-				this.line(a.x, a.y, b.x, b.y, `rgb(100, 0, 100, 0.4)`, 10);
+				Noneline(a.x, a.y, b.x, b.y, `rgb(100, 0, 100, 0.4)`, 10);
 			}
 		}
 	}
@@ -131,7 +131,7 @@ class DrawingTools {
 	 * @param {Cell[]} trajectory
 	 */
 	gridCell(cellmap, width, height, trajectory, objective) {
-		let context = this.context;
+		let context = Nonecontext;
 		let map = cellmap.map;
 		let dim = height / map.length;
 		context.beginPath();
@@ -159,7 +159,7 @@ class DrawingTools {
 				cell = objective[ cell ];
 				const [x, y] = [cell.x, cell.y];
 				Draw.circle(x * dim + dim / 2, y * dim + dim / 2,  dim / 4, color, color);
-				this.text(` ${ i == 0 ? "START" : "END"}  `, x * dim, y * dim + 30);
+				Nonetext(` ${ i == 0 ? "START" : "END"}  `, x * dim, y * dim + 30);
 				i++;
 			}
 			context.closePath();
@@ -172,8 +172,8 @@ class DrawingTools {
 				let b = trajectory[k];
 				
 				Draw.circle(a.x * dim + dim / 2, a.y * dim + dim / 2,  dim / 6, color, color);
-				this.line(a.x * dim+ dim / 2, a.y* dim+ dim / 2, b.x* dim+ dim / 2, b.y* dim+ dim / 2, `rgb(200, 0, 100, 0.3)`, 4);
-				this.text(` ${k}  `,b.x * dim + dim / 2, b.y * dim + 10);
+				Noneline(a.x * dim+ dim / 2, a.y* dim+ dim / 2, b.x* dim+ dim / 2, b.y* dim+ dim / 2, `rgb(200, 0, 100, 0.3)`, 4);
+				Nonetext(` ${k}  `,b.x * dim + dim / 2, b.y * dim + 10);
 			}
 			context.closePath();
 		}
