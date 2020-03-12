@@ -11,9 +11,9 @@ let cellmap = new CellMap([
 	[0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
 	[0, 1, 0, 0, 1, 0, 0, 1, 1, 0],
 	[0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
-	[0, 1, 0, 0, 1, 0, 1, 0, 1, 0],
-	[0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
-	[0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
+	[0, 1, 0, 0, 0, 0, 1, 0, 1, 0],
+	[0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
 	[0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
 	[0, 1, 0, 0, 0, 0, 1, 1, 0, 0],
 	[0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
@@ -26,6 +26,11 @@ let objective = {
 	from : new Cell(0, 3),
 	to : new Cell(9, 6)
 };
+
+pathfinder.n_population = 100;
+pathfinder.generation_max = 500;
+pathfinder.mutation_rate = 0.3;
+pathfinder.fitest_rate = 0.4;
 
 pathfinder.n_population = 100;
 pathfinder.generation_max = 1200;
