@@ -41,12 +41,12 @@ class GraphGenerator {
         this.max_y = max_y || 200;
     }
 
-    /**
+	/**
 	 * Generates a graph with a random topology
 	 * Each nodes of the generated graph will not exceed the predefined 
 	 * bounds of the current GraphGenerator.
-     * @returns {Graph} generated graph
-     */
+	 * @returns {Graph} generated graph
+	 */
     generateGraph() {
         let nodes = this.nodes;
         let distances = [];

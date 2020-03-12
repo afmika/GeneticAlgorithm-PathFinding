@@ -13,7 +13,7 @@ class Graph {
 
 	/**
 	 * Removes duplicated sequences
-	 * Removes identity such as A B A , or A B C B C A
+	 * Removes identities such as A B A , or A B C B C A
 	 * @param {string[]} trajectory
 	 * @returns {string[]}
 	 */

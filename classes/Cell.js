@@ -24,7 +24,7 @@ class Cell {
     }
 
     /**
-     * @returns {Cell} clonned cell
+     * @returns {Cell} cloned cell
      */
     clone() {
         return new Cell(this.x, this.y);
