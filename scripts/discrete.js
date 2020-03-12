@@ -28,7 +28,7 @@ let objective = {
 	to : new Cell(9, 6)
 };
 
-pathfinder.n_population = 100;
+pathfinder.n_population = 60;
 pathfinder.generation_max = 500;
 pathfinder.mutation_rate = 0.3;
 pathfinder.fitest_rate = 0.4;

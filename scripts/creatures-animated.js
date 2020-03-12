@@ -27,10 +27,10 @@ let objective = {
 	to : new Cell(9, 6)
 };
 
-pathfinder.n_population = 100;
-pathfinder.generation_max = 500;
+pathfinder.n_population = 60;
+pathfinder.generation_max = 1000;
 pathfinder.mutation_rate = 0.3;
-pathfinder.fitest_rate = 0.4;
+pathfinder.fitest_rate = 0.2;
 
 let creatures_anim = [];
 
@@ -47,7 +47,7 @@ let interval = setInterval(function() {
 		solution = CellMap.cleanTrajectory(fitest.dna);
 		generation++;
 
-		if(generation % 10 == 0) {
+		if(generation % 20 == 0) {
 			generateCreatureFrom(solution);
 		}
 		Draw.gridCell(cellmap, canvas.width, canvas.height, [], objective);

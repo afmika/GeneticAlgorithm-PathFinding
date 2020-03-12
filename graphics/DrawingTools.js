@@ -139,27 +139,26 @@ class DrawingTools {
 			for (let x = 0; x < map[y].length; x++) {
 				const value = map[y][x];
 				context.strokeWidth = 2;
-				context.fillStyle =  `rgb(0, 0, 100, 0.6)`;
-				context.strokeStyle =  `rgb(0, 0, 100, 0.4)`;
+				let stroke =  `rgb(0, 0, 100, 0.6)`;
+				let fill =  `rgb(0, 0, 100, 0.4)`;
 				if(value == 0) {
-					context.strokeRect(x * dim + dim / 2, y * dim + dim / 2, dim / 4, dim / 4);
+					Draw.circle(x * dim + dim / 2, y * dim + dim / 2, dim / 4, stroke);
 				} else {
-					context.fillRect(x * dim + dim / 2, y * dim + dim / 2, dim / 4, dim / 4);
+					Draw.circle(x * dim + dim / 2, y * dim + dim / 2, dim / 4, stroke, fill);
 				}
 			}
 		}
 		context.closePath();
 
 
-		
+		let color =  `rgb(150, 200, 2, 0.5)`;
 		if(objective) {
 			context.beginPath();
-			context.fillStyle =  `rgb(150, 200, 2, 0.8)`;
 			let i = 0;
 			for(let cell in objective) {
 				cell = objective[ cell ];
 				const [x, y] = [cell.x, cell.y];
-				context.fillRect(x * dim + dim / 2, y * dim + dim / 2, dim / 4, dim / 4);
+				Draw.circle(x * dim + dim / 2, y * dim + dim / 2,  dim / 4, color, color);
 				this.text(` ${ i == 0 ? "START" : "END"}  `, x * dim, y * dim + 30);
 				i++;
 			}
@@ -172,10 +171,9 @@ class DrawingTools {
 				let a = trajectory[k - 1];
 				let b = trajectory[k];
 				
-				context.fillRect(a.x * dim + dim / 2, a.y * dim + dim / 2, dim / 4, dim / 4);
-				this.line(a.x * dim+ dim / 2, a.y* dim+ dim / 2, b.x* dim+ dim / 2, b.y* dim+ dim / 2, `rgb(100, 0, 100, 0.4)`, 4);
-				
-				this.text(` ${k}  `,a.x * dim, a.y * dim + 10);
+				Draw.circle(a.x * dim + dim / 2, a.y * dim + dim / 2,  dim / 6, color, color);
+				this.line(a.x * dim+ dim / 2, a.y* dim+ dim / 2, b.x* dim+ dim / 2, b.y* dim+ dim / 2, `rgb(200, 0, 100, 0.3)`, 4);
+				this.text(` ${k}  `,b.x * dim + dim / 2, b.y * dim + 10);
 			}
 			context.closePath();
 		}

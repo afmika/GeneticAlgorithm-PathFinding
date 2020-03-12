@@ -27,7 +27,7 @@ let objective = {
 	to : new Cell(9, 6)
 };
 
-pathfinder.n_population = 100;
+pathfinder.n_population = 60;
 pathfinder.generation_max = 500;
 pathfinder.mutation_rate = 0.3;
 pathfinder.fitest_rate = 0.4;
@@ -56,4 +56,4 @@ let interval = setInterval(function() {
 	Draw.text("Generation "+generation , text_x, 15);
 	Draw.text("Distance "+(1 / fitest.score), text_x, 30);
 	generation++;
-}, 1000 / 60);
+}, 1000 / 40);
