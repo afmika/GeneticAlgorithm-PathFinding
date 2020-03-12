@@ -1,2 +1,2 @@
 # GeneticAlgorithm-PathFinding
-Path finding using genetic algorithm.
+Finds for the shortest path using a genetic algorithm.
