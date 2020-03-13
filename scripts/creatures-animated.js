@@ -45,6 +45,7 @@ pathfinder.initPopulation(objective.from, objective.to);
 
 let fitest = null;
 let solution = null;
+let solution_stack = [];
 let interval = setInterval(function() {
 	
 	Draw.clear(0, 0, canvas.width, canvas.height);
@@ -54,10 +55,17 @@ let interval = setInterval(function() {
 		fitest = pathfinder.step(); // next generation
 		solution = CellMap.cleanTrajectory(fitest.dna);
 		generation++;
-
-		if(generation % 20 == 0) {
+		
+		if(generation % 50 == 0) {
 			generateCreatureFrom(solution);
 		}
+		
+		if( !solutionAlreadyFound(solution) ) {
+			generateCreatureFrom(solution, "red", "rgb(200,0,100,0.6)");
+			solution_stack.push(solution);
+		}
+		
+		
 		Draw.gridCell(cellmap, canvas.width, canvas.height, [], objective);
 	} else {
 		Draw.gridCell(cellmap, canvas.width, canvas.height, solution, objective);
@@ -80,12 +88,14 @@ let interval = setInterval(function() {
 }, 1000 / 40);
 
 
-function generateCreatureFrom(solution) {
+function generateCreatureFrom(solution, stroke_color, fill_color) {
 	let anim_data = {};
 	anim_data.index = 0;
+	anim_data.fill_color = fill_color || "rgb(0,0,100,0.3)";
+	anim_data.stroke_color = stroke_color || "blue";
 	anim_data.solution = solution;
 	anim_data.creature = new Creature(solution[anim_data.index].x, solution[anim_data.index].y);
-	creatures_anim.push( anim_data );
+	creatures_anim.push( anim_data );		
 }
 
 function animateCreatures() {
@@ -100,7 +110,7 @@ function animateCreatures() {
 			anim_data.done = true;
 		}
 	
-		Draw.circle(anim_data.creature.x * dim + dim/2, anim_data.creature.y * dim + dim/2, dim/12, "blue", "rgb(0,0,100,0.3)");
+		Draw.circle(anim_data.creature.x * dim + dim/2, anim_data.creature.y * dim + dim/2, dim/12, anim_data.stroke_color, anim_data.fill_color);
 	});
 }
 
@@ -111,4 +121,20 @@ function animationDone() {
 			count++;
 	});
 	return count == creatures_anim.length;
+}
+
+
+function solutionAlreadyFound(solution) {
+	for(let i = 0; i < solution_stack.length; i++) {
+		if(solution_stack[i].length == solution.length) {		
+			let count = 0;
+			for(let node = 0; node < solution.length; node++) {
+				count += solution[node] == solution_stack[i][node] ? 1 : 0;
+			}	
+			if(count == solution.length) {
+				return true;
+			}
+		}
+	}
+	return false;
 }
