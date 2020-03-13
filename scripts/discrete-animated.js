@@ -34,7 +34,7 @@ pathfinder.fitest_rate = 0.4;
 
 pathfinder.n_population = 100;
 pathfinder.generation_max = 1200;
-pathfinder.mutation_rate = 0.3;
+pathfinder.mutation_rate = 0.5;
 pathfinder.fitest_rate = 0.4;
 
 

@@ -8,7 +8,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext('2d');
 const Draw = new DrawingTools(ctx);
 
-let generator = new GraphGenerator( ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'] );
+let generator = new GraphGenerator( ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'] );
 
 generator.setHorizontalBounds(10, canvas.width - 10);
 generator.setVerticalBounds(90, canvas.height - 10);
@@ -19,12 +19,18 @@ generator.unconnect('A', 'H');
 generator.unconnect('E', 'G');
 generator.unconnect('F', 'C');
 generator.unconnect('B', 'D');
+generator.unconnect('I', 'J');
 // ------
 
 let graph = generator.generateGraph();
 let algo = new GeneticGraphPathFinder(graph);
-algo.n_population = 50;
-algo.generation_max = 200;
+
+// making stuff a little bit harder ...
+// we can increase 'n_population'
+// and decrease 'mutation_rate' if we want it to run faster
+algo.n_population = 5; // fewer nb. of population
+algo.mutation_rate = 0.8; // higher mutation rate
+algo.generation_max = 100;
 
 let target = {from : 'A', to : 'H'};
 algo.initPopulation(target.from, target.to);
@@ -51,4 +57,4 @@ let interval = setInterval(function() {
 	Draw.text("DNA "+ fitest.dna.join(","), text_x, 80);
 	Draw.text("Guessed Trajectory "+ solution.join(","), text_x, 100);
 	generation++;
-}, 1000 / 40);
+}, 1000 / 3);

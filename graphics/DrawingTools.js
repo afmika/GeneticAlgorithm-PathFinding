@@ -142,9 +142,9 @@ class DrawingTools {
 				let stroke =  `rgb(0, 0, 100, 0.6)`;
 				let fill =  `rgb(0, 0, 100, 0.4)`;
 				if(value == 0) {
-					Draw.circle(x * dim + dim / 2, y * dim + dim / 2, dim / 4, stroke);
+					this.circle(x * dim + dim / 2, y * dim + dim / 2, dim / 4, stroke);
 				} else {
-					Draw.circle(x * dim + dim / 2, y * dim + dim / 2, dim / 4, stroke, fill);
+					this.circle(x * dim + dim / 2, y * dim + dim / 2, dim / 4, stroke, fill);
 				}
 			}
 		}
@@ -158,7 +158,7 @@ class DrawingTools {
 			for(let cell in objective) {
 				cell = objective[ cell ];
 				const [x, y] = [cell.x, cell.y];
-				Draw.circle(x * dim + dim / 2, y * dim + dim / 2,  dim / 4, color, color);
+				this.circle(x * dim + dim / 2, y * dim + dim / 2,  dim / 4, color, color);
 				this.text(` ${ i == 0 ? "START" : "END"}  `, x * dim, y * dim + 30);
 				i++;
 			}
@@ -171,7 +171,7 @@ class DrawingTools {
 				let a = trajectory[k - 1];
 				let b = trajectory[k];
 				
-				Draw.circle(a.x * dim + dim / 2, a.y * dim + dim / 2,  dim / 6, color, color);
+				this.circle(a.x * dim + dim / 2, a.y * dim + dim / 2,  dim / 6, color, color);
 				this.line(a.x * dim+ dim / 2, a.y* dim+ dim / 2, b.x* dim+ dim / 2, b.y* dim+ dim / 2, `rgb(200, 0, 100, 0.3)`, 4);
 				this.text(` ${k}  `,b.x * dim + dim / 2, b.y * dim + 10);
 			}

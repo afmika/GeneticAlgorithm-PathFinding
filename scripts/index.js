@@ -8,6 +8,10 @@ const links = [
         value : "./graph-animated.html"
     },
     {
+        text : "Path finding inside a random graph + animation", 
+        value : "./random-graph-animated.html"
+    },
+    {
         text : "Path finding inside a Grid Map", 
         value : "./discrete.html"
     },

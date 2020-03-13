@@ -33,6 +33,6 @@ tr:hover {
 	background-color: black;
 }
 
-#canvas {
+#canvas, .zone {
 	border:2px Solid Black;
 }
