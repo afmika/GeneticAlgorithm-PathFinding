@@ -56,7 +56,7 @@ let interval = setInterval(function() {
 		solution = CellMap.cleanTrajectory(fitest.dna);
 		generation++;
 		
-		if(generation % 50 == 0) {
+		if(generation % 20 == 0) {
 			generateCreatureFrom(solution);
 		}
 		
@@ -85,7 +85,7 @@ let interval = setInterval(function() {
 		clearInterval(interval);
 	}
 
-}, 1000 / 40);
+}, 1000 / 24);
 
 
 function generateCreatureFrom(solution, stroke_color, fill_color) {
