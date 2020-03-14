@@ -42,10 +42,11 @@ class Creature extends Cell {
         let deltaX = (target.x * factor - this.x * factor);
         let dx = deltaX < 0 ? -dv : dv;
         if(deltaX != 0) {            
-            let a = deltaY / deltaX,
-                b = this.y - a * this.x;
+            let a = deltaY / deltaX;
             this.x += dx;
-            this.y = a*this.x + b;
+            // y = y + dy 
+            // => dy = a * dx : (y = ax + b)
+            this.y += a * dx;
             // alert(`A- start ${this.str()} target ${target.str()}  dx=${dx} current ${this.str()}`);
         } else {
             // xB - xA = 0 <=> xA = xB => (D) : x = xA or xB

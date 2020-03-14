@@ -123,7 +123,6 @@ function animationDone() {
 	return count == creatures_anim.length;
 }
 
-
 function solutionAlreadyFound(solution) {
 	for(let i = 0; i < solution_stack.length; i++) {
 		if(solution_stack[i].length == solution.length) {		
